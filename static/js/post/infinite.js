@@ -41,6 +41,8 @@ const attachInfiniteScroll = (sentinel, scrollElement, baseUrl) => {
     }
   })
 
+  //
+
 
   observer.observe(sentinel);
 }; 
