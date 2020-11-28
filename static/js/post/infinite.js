@@ -27,6 +27,8 @@ const appendElements = async (scrollElement, counter, baseUrl) => {
 
 
 const attachInfiniteScroll = (sentinel, scrollElement, baseUrl) => {
+
+  //
   let counter = 1;
   let end = false;
   let observer = new IntersectionObserver(async (entries) => {
