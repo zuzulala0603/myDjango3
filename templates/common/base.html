@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common/sidebar.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/static/js/common/common.js"></script>
+    <script src="/static/js/common/header.js"></script>
+    <title>myDjango3</title>
+
+    {% block extra_scripts %}
+    {% endblock extra_scripts%}
+
+</head>
+
+
+
+<body>
+
+
+    {% include 'common/header.html' %}
+
+    {% include 'common/sidebar.html' %}
+
+
+    <!--     {% if user.is_authenticated %}
+    {% endif %} -->
+    {% block content %}
+    {% endblock %}
+
+
+
+
+</body>
+
+</html>

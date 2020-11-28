@@ -1,0 +1,29 @@
+@import "../_settings.scss";
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: #{$font-primary};
+}
+
+
+
+input:focus{
+    outline: none;
+}
+
+
+
+body {
+    background-color: #{$color-body} !important
+}
+
+.mobile-only {
+    display: none;
+}
+
+
+a{
+    all: unset !important;
+}

@@ -1,0 +1,68 @@
+{% extends 'common/base.html' %}
+
+{% load static %}
+
+
+{% block extra_scripts %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css" />
+<script src="/static/js/post/infinite.js"></script>
+{% endblock extra_scripts%}
+
+{% block content %}
+
+<body>
+  <link rel="stylesheet" href="/static/css/post/post.css">
+  <section class="section">
+    <div class="container">
+      <div class="columns is-variable">
+        <div class="column is-three-fifths">
+
+
+
+          <form method="POST" action="{% url 'post:create-post' %}">
+            {% csrf_token %}
+            <div class="field">
+              <div class="control">
+                <textarea name="text" class="textarea" placeholder="Write your post here" required></textarea>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <button class="button is-link">Post</button>
+              </div>
+            </div>
+
+          </form>
+
+
+          <!-- element where scrolling happens -->
+          <div class="posts" id="scroll-element">
+            {% include 'post/_posts.html' with posts=posts %}
+          </div>
+
+          <!-- bottom sentinel element -->
+          <div id="bottom-sentinel">
+          </div>
+
+        </div>
+
+
+
+        <div class="column" style="height: 50px;">
+        </div>
+      </div>
+
+    </div>
+  </section>
+</body>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    let bottomSentinel = document.querySelector("#bottom-sentinel");
+    let scrollElement = document.querySelector("#scroll-element");
+    let baseUrl = "{% url 'post:post-list' %}";
+    attachInfiniteScroll(bottomSentinel, scrollElement, baseUrl);
+  })
+</script>
+{% endblock content %}

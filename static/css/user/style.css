@@ -1,0 +1,9 @@
+div,
+label,
+input,
+button,
+p,
+.invalid-feedback,
+.valid-feedback {
+    background-color: white;
+}

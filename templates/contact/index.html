@@ -1,0 +1,92 @@
+{% extends 'common/base.html' %}
+
+
+{% block content %}
+<link rel="stylesheet" href="/static/css/contact/contact.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<div id="contact">
+    <form id="contact__form">
+        <div id="contact__form__title">Let's talk</div>
+        <div id="contact__form__description">
+            Contact us directily or fill out the form and we will
+            get back to you promptly.
+        </div>
+
+        <div id="contact__form__email">
+            <div id="contact__form__email__label">Your Email</div>
+            <input type="text" id="contact__form__email__input" class="contact__form__input">
+        </div>
+        <div id="contact__form__msg">
+            <div id="contact__form__msg__label">Your Message</div>
+            <textarea name="" id="contact__form__msg__input" cols="30" rows="10"
+                class="contact__form__input"></textarea>
+
+        </div>
+        <div id="contact__form__submit">Send Message</div>
+    </form>
+
+
+    <div id="contact__info">
+        <img src="/static/img/email.svg" alt="" id="contact__info__img">
+        <div id="contact__info__email"><i class="fas fa-envelope"></i>mydjnago@mydjango.com</div>
+        <div id="contact__info__tel"><i class="fas fa-phone-alt"></i>+82 10-1234-5678</div>
+    </div>
+</div>
+
+<script>
+
+    function validateEmail(email) {
+        let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+        return re.test(email);
+    }
+
+    let email_input = document.getElementById("contact__form__email__input")
+    let msg_input = document.getElementById("contact__form__msg__input")
+    let submit_btn = document.getElementById("contact__form__submit")
+
+
+
+    submit_btn.addEventListener('click', () => {
+
+        if (email_input.value == "" || msg_input.value == "") {
+            return false
+        }
+
+        if (!(validateEmail(email_input.value))) {
+            Swal.fire("이메일 주소를 확인해주세요", "", "error")
+            return false
+        }
+
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            data: {
+                email: email_input.value,
+                content: msg_input.value,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            url: "{% url 'contact:contact' %}",
+            success: function (response) {
+                if (response.msg == "success") {
+                    Swal.fire({
+                        position: "top",
+                        icon: "success",
+                        title: "메세지가 전송되었습니다.",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    }).then(() => {
+                        window.location.href = "/"
+                    })
+                } else {
+                    Swal.fire("이런...", "오류 발생", "error")
+                    console.log(response)
+                }
+            },
+            error: function () {
+                Swal.fire("이런...", "예상치 못한 오류가 발생했습니다!", "error")
+            }
+        })
+    })
+</script>
+
+{% endblock %}

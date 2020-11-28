@@ -1,0 +1,44 @@
+@font-face {
+  font-family: 'IBMPlexSansKR-Regular';
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cafe24Ohsquare';
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* color */
+/* background-color */
+/* font */
+/* font-size */
+/* font-weight */
+/* border-radius */
+/* box-shadow */
+/* responsive  */
+/*  */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: IBMPlexSansKR-Regular;
+}
+
+input:focus {
+  outline: none;
+}
+
+body {
+  background-color: #EAEDF5 !important;
+}
+
+.mobile-only {
+  display: none;
+}
+
+a {
+  all: unset !important;
+}

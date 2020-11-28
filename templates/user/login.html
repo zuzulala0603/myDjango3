@@ -1,0 +1,77 @@
+{% extends 'common/base.html' %}
+
+
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<link rel="stylesheet" href="/static/css/all.css">
+<link rel="stylesheet" href="/static/css/bootstrap.css">
+<link rel="stylesheet" href="/static/css/user/login.css">
+
+<div id="login">
+    <div id="login__form">
+        <div id="login__form__title">LOGIN</div>
+        <div id="login__form__input">
+            <form action="">
+                <input id="login__form__input__id" type="text" class="form-control" placeholder="username" required
+                    autocomplete="off" />
+                <input id="login__form__input__pw" type="password" class="form-control" name="user_pw"
+                    placeholder="password" required autocomplete="off" />
+            </form>
+        </div>
+        <div id="login__form__option">
+            <div id="login__form__option__remember">
+                <div id="login__form__option__remember__checkbox">
+                    <i id="login__form__option__remember__checkbox__icon" class="fas fa-check"></i>
+                </div>
+                <div> &nbsp;&nbsp;Remember me</div>
+            </div>
+            <div id="login__form__option__forget">
+                Forgot password?
+            </div>
+        </div>
+
+        <div id="login__form__submit">Login</div>
+
+
+        <div id="login__form__yet">
+            Don't have an account?
+            <a href="/register">
+                <div id="login__form__yet__register">&nbsp;&nbsp;Sign up</div>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    let submitBtn = document.getElementById('login__form__submit')
+
+    submitBtn.addEventListener('click', () => {
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            data: {
+                user_id: document.getElementById('login__form__input__id').value,
+                user_pw: document.getElementById('login__form__input__pw').value,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            url: "{% url 'user:login' %}",
+            success: function (response) {
+                if (response.msg == "success") {
+                    location.href = "/"
+                } else {
+                    Swal.fire("이런...", "아이디나 비밀번호를 다시 확인하세요", "error")
+                    console.log(response)
+                }
+            },
+            error: function () {
+                Swal.fire("이런...", "예상치 못한 오류가 발생했습니다!", "error")
+            }
+        })
+    })
+
+</script>
+{% endblock %}

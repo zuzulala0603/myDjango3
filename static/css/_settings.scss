@@ -1,0 +1,85 @@
+
+@font-face {
+  font-family: 'IBMPlexSansKR-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cafe24Ohsquare';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* color */
+
+$color-primary : #334ACF;
+$color-content : #ffff;
+$color-btn : #ffff;
+$color-checkbox : #ffff;
+$color-radiobtn : #ffff;
+$color-sidebar : #6C7D8B;
+$color-content : #ffff;
+$color-body : #EAEDF5;
+
+/* background-color */
+
+$background-color-primary : #EAEDF5;
+$background-color-content : #ffff;
+$background-color-btn : #ffff;
+$background-color-checkbox : #ffff;
+$background-color-radiobtn : #ffff;
+$background-color-body : #F6F6F9;
+$background-color-content : #ffff;
+
+/* font */
+
+$font-primary :'IBMPlexSansKR-Regular';
+ 
+/* font-size */
+
+$font-size-title : 30px;
+$font-size-menu : 30px;
+$font-size-btn : 30px;
+
+/* font-weight */
+$font-weight-title : 900;
+$font-weight-btn : 700;
+
+/* border-radius */
+
+$border-radius-content : 0.5rem;
+$border-radius-btn : 1rem;
+
+/* box-shadow */
+
+$box-shadow-content : 0 4px 12px 0 rgba(25, 49, 146, 0.14);
+$box-shadow-btn : 4px 4px 12px 4px rgba(25, 49, 146, 0.14);
+
+/* responsive  */
+
+$breakpoint-mobile: 335px;
+$breakpoint-tablet: 758px;
+$breakpoint-desktop: 1025px;
+
+@mixin mobile {
+    @media (max-width: #{$breakpoint-tablet - 1px}) {
+      @content;
+    }
+  }
+  
+  @mixin tablet {
+    @media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
+      @content;
+    }
+  }
+  
+  @mixin desktop {
+    @media (min-width: #{$breakpoint-desktop}) {
+      @content;
+    }
+  }
+
+  /*  */

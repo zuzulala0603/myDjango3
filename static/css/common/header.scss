@@ -1,0 +1,99 @@
+@import "../_settings.scss";
+
+#header{
+    display: flex;
+    width: 100vw;
+    max-width:100%;
+    height: 8vh;
+    background-color: white;
+    box-shadow: #{$box-shadow-content};
+
+}
+
+#header__menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100%;  
+}
+
+
+#header__menu__icon{
+    font-size: 22.5px;
+    cursor: pointer;
+}
+
+#header__logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: #{$font-size-title};
+    width: 200px;
+    height: 100%;
+    color: #{$color-primary};
+    cursor: pointer;
+}
+
+
+#header__user{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 30%;
+    height: 100%;
+    margin: 0 0 0 auto;
+
+}
+
+
+#header__user__login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    width: 100px;
+    height: 60%;
+    font-weight: 900;
+    border-radius: 7px;
+    background-color: #fff;
+    color: #{$color-primary};
+    box-shadow: #{$box-shadow-btn};
+    cursor: pointer;
+}
+
+#header__user__register{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    width: 150px;
+    height: 60%;
+    margin: 0 20px 0 10px;
+    font-weight: 900;
+    border-radius: 7px;
+    background-color: #{$color-primary};
+    box-shadow: #{$box-shadow-btn};
+    cursor: pointer;
+}
+
+
+@include mobile{
+    #header__logo{
+        display: none;
+    }
+
+    #header__menu{
+        width: 20%;
+    }
+
+
+
+    #header__user{
+        width: 50%;
+        font-size: 0.75rem;
+/*         background-color: lightblue */
+    }
+
+
+}

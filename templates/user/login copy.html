@@ -1,0 +1,193 @@
+{% extends 'common/base.html' %}
+
+
+{% block content %}
+<link rel="stylesheet" href="/static/css/all.css">
+<script src="/static/js/user/login.js"></script>
+<style>
+    #login {
+        display: flex;
+        margin: auto;
+        margin-top: 5%;
+        width: 95vw;
+        max-width: 950px;
+        height: 70vh;
+        background-color: #F8FAFD;
+        border-radius: 1rem;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    }
+
+    #login__form {
+        margin: auto;
+        width: 80%;
+        height: 100%;
+    }
+
+    #login__form__title {
+        text-align: center;
+        color: #4796FF;
+        margin-top: 5%;
+        font-weight: 900;
+        font-size: 30px;
+    }
+
+    #login__form__input {
+        margin: auto;
+        width: 80%;
+        max-width: 500px;
+        min-height: 7.5%;
+        margin-bottom: 10%;
+    }
+
+
+
+    #login__form__input__id {
+        margin-top: 3.5%;
+        background-color: #F4F8F7;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    #login__form__input__pw {
+        margin-top: 2%;
+        background-color: #F4F8F7;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    #login__form__input__remember {
+        margin-top: 1%;
+        text-indent: 5px;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+
+    #login__form__submit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        margin-top: 5%;
+        width: 40%;
+        max-width: 250px;
+        height: 7.5%;
+        border-radius: 1.25rem;
+        background-color: #4796FF;
+        color: white;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        cursor: pointer;
+    }
+
+    #login__form__forget {
+        margin-top: 1%;
+        text-align: center;
+        font-size: 12px;
+        cursor: pointer;
+    }
+
+    #login__form__hr {
+        display: inline-flex;
+        width: 50%;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2%;
+        margin-left: 25%;
+        /*         background-color: lightgray; */
+    }
+
+    #login__form__hr__item {
+        color: rosybrown;
+        width: 40%;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+    }
+
+    #login__form__sns {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        width: 40%;
+        height: 15%;
+    }
+
+    .login__form__sns__item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 2px;
+        border: 2px groove black;
+        border-radius: 0.5rem;
+        width: 10vw;
+        height: 10vw;
+        max-width: 50px;
+        max-height: 50px;
+        cursor: pointer;
+    }
+
+    .login__form__sns__item__img {
+        width: 30px;
+        height: 30px;
+    }
+</style>
+
+<style>
+    #login__form__input__remember {
+        margin-top: 3%;
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    #login__form__input__remember__checkbox {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-left: 5px;
+        width: 20px;
+        height: 20px;
+        background-color: #4796FF;
+        cursor: pointer;
+    }
+
+    .none {
+        display: none;
+    }
+</style>
+<div id="login">
+    <div id="login__form">
+        <div id="login__form__title">로그인</div>
+        <div id="login__form__input" style="background-color: lightcoral;">
+            <input id="login__form__input__id" type="text" class="form-control" placeholder="아이디" required
+                autocomplete="off" />
+            <input id="login__form__input__pw" type="password" class="form-control" name="user_pw" placeholder="비밀번호"
+                required autocomplete="off" />
+            <div id="login__form__input__remember">
+                <div id="login__form__input__remember__checkbox">
+                    <i id="login__form__input__remember__checkbox__icon" class="fas fa-check" style="color: white;"></i>
+                </div>
+                <div>자동 로그인</div>
+            </div>
+        </div>
+        <div id="login__form__submit">로그인</div>
+        <div id="login__form__forget">비밀번호를 잃어버리셨나요?</div>
+
+        <div id="login__form__hr">
+            <hr id="login__form__hr__item">
+            <span style="color: #C6CEE3;">or</span>
+            <hr id="login__form__hr__item">
+        </div>
+
+        <div id="login__form__sns">
+            <div class="login__form__sns__item">
+                <img class="login__form__sns__item__img" src="/static/img/logo/google.png" alt="">
+            </div>
+            <div class="login__form__sns__item">
+                <img class="login__form__sns__item__img" src="/static/img/logo/google.png" alt="">
+            </div>
+            <div class="login__form__sns__item">
+                <img class="login__form__sns__item__img" src="/static/img/logo/google.png" alt="">
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

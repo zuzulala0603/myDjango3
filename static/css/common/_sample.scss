@@ -1,0 +1,7 @@
+@import "../_settings.scss";
+
+@include mobile {
+    .img-card {
+      width: 100px;
+    }
+  }

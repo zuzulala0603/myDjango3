@@ -1,0 +1,141 @@
+@import "../_settings.scss";
+
+
+#register {
+    display: flex;
+    margin: auto;
+    margin-top: 10vh;
+    width: 98vw;
+    max-width: 600px;
+    background-color: #F8FAFD;
+    border-radius: 1rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+#register__form {
+    margin: 0 auto;
+    width: 80%;
+/*     background-color: #3A589B;    */
+}
+
+
+/* TITLE */
+#register__form__title {
+    margin-top: 40px;
+    font-weight: 900;
+    font-size: 30px;
+    color: #{$color-primary};
+}
+
+/* INPUT */
+#register__form__input {
+    margin: auto;
+    width: 100%;
+}
+
+#register__form__input__id {
+    box-shadow: 0 1px  1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+#register__form__input__id__double{
+    border: 1px solid darkgray;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 1px  1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+#register__form__input__pw {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+#register__form__input__pw__re {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+#register__form__option{
+    display: flex;
+    margin-top: 40px;
+}
+
+#register__form__option__terms {
+    display: flex;
+    align-items: center;
+    color: darkgray;
+    cursor: pointer;
+}
+
+#register__form__option__terms__checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+    width: 15px;
+    height: 15px;
+    border-radius: 5px;
+    border: 1px solid darkgray;
+    cursor: pointer;
+}
+#register__form__option__terms__checkbox__icon{
+    display: none;
+    color: white;
+    font-size: 7px;
+}
+
+
+
+#register__form__option__forget{
+    display: flex;
+    align-items: center;
+    margin:  0 0 0 auto;
+    color: darkgray;
+    cursor: pointer;
+}
+
+#register__form__submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: #{$color-primary};
+    font-weight: 900;
+    color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+}
+
+#register__form__forget {
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+#register__form__already{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    color: darkgray;
+}
+
+#register__form__already__login{
+    font-weight: 700;
+    color: #{$color-primary};
+    cursor: pointer;
+}
+
+
+
+@include mobile{
+    #register{
+        font-size: 0.75rem;
+        margin-top: 5vh;
+    }
+}
+
+
+
+@include tablet{
+    #register{
+        max-width: 75vw;
+    }
+}
