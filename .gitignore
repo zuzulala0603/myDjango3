@@ -1,6 +1,9 @@
 
-
+.ebextensions
+.static
 config.txt
+db.sqlite3
+
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
