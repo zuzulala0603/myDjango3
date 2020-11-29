@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-
+import json
 
 class UserManager(BaseUserManager):
     def create_user(self, user_id, password, email):
@@ -41,6 +41,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.user_id
 
+    
     class Meta:
         db_table = "user_table"
         verbose_name = "user"

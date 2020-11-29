@@ -61,8 +61,8 @@
     background-color: lightslategrey;
 }
 
-#sidebar__body__item{
-    display: flex;
+.sidebar__body__item{
+    display: none;
     flex-wrap: wrap;
     width: 80%;
     margin: 0 auto;

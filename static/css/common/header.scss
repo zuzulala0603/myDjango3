@@ -77,6 +77,37 @@
     cursor: pointer;
 }
 
+#header__user__avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #aaaaaa;
+    color: white;
+    font-size: 1.25rem;
+    margin-right: 5%;
+    width: 5vh;
+    height: 5vh;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+#header__user__avatar__tabs {
+    display: none;
+    position: absolute;
+    top: 8vh;
+    right: 10px;
+    width: 150px;
+    height: 250px;
+    padding: 0 20px;
+    padding-top: 10px;
+    background-color: lightsalmon;
+    border-radius: 1.25rem;
+    z-index: 100;
+    cursor: pointer;
+}
+
+
 
 @include mobile{
     #header__logo{

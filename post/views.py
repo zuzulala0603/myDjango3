@@ -88,16 +88,15 @@ class BoardView(ListView):
 class Board_Detail_View(View):
     def get(self, request,pk):
         post = get_object_or_404(Post, pk=pk)
+        comment = Comment.objects.filter(post=pk).order_by('-pub_date')
         context = {
             'post' : post,
+            'comments' : comment,
         }
         
         return render(request, 'post/board/post_detail.html', context)
     
     
-class EmployeeEncoder(JSONEncoder):
-        def default(self, o):
-            return o.__dict__
 
 ## COMMENT
 
@@ -106,15 +105,14 @@ class Comment_View(View):
     def post(self, request, pk):
         post = get_object_or_404(Post, id = pk)
         content = request.POST.get('content')
-        
+
         if content:
             comment = Comment.objects.create(post=post,writer=request.user,content=content)
-
+            test = request.user.user_id
             data= {
-                'tmp' : "tmp",
+                'writer' : request.user.user_id,
                 'content' : content,
                 'pub_date' : '방금 전',
                 'comment_id' : comment.id
             }
-            post.save()
             return JsonResponse({'msg': "success",'data' : data}, status=200)

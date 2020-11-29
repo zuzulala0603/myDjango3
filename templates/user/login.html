@@ -47,8 +47,10 @@
 
 <script>
 
-    let submitBtn = document.getElementById('login__form__submit')
+    document.getElementById('login__form__input__id').focus()
 
+
+    let submitBtn = document.getElementById('login__form__submit')
     submitBtn.addEventListener('click', () => {
         $.ajax({
             type: "post",
@@ -72,6 +74,13 @@
             }
         })
     })
+
+    document.querySelector("#login").addEventListener("keyup", function (e) {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            submitBtn.click();
+        }
+    });
 
 </script>
 {% endblock %}

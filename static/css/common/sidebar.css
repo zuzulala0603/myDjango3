@@ -102,10 +102,8 @@
   background-color: lightslategrey;
 }
 
-#sidebar__body__item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.sidebar__body__item {
+  display: none;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   width: 80%;

@@ -31,8 +31,11 @@
     {% include 'common/sidebar.html' %}
 
 
-    <!--     {% if user.is_authenticated %}
-    {% endif %} -->
+    {% if user.is_authenticated %}
+
+    <button onclick="window.location.href='/logout'"> 로그아웃</button>
+
+    {% endif %}
     {% block content %}
     {% endblock %}
 

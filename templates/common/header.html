@@ -4,8 +4,44 @@
     </div>
     <div id="header__logo" onclick="window.location.href='/'">BrandName</div>
     <div id="header__user">
+        {% if not user.is_authenticated %}
         <div id="header__user__login" onclick="window.location.href='/login'">Login</div>
         <div id="header__user__register" onclick="window.location.href='/register'">Sign in</div>
-    </div>
+        {% else %}
+        <div id="header__user__avatar"> <i class="header__user__avatar__icon fas fa-user" data-side="user"></i></div>
+        <div id="header__user__avatar__tabs">
+            <div id="header__user__avatar__tabs__profile">마이 페이지</div>
+            <div id="header__user__avatar__tabs__settings">설정</div>
+            <hr>
+            <div id="header__user__avatar__tabs__logout" onclick="window.location.href='/logout'">로그아웃</div>
+        </div>
+        <script>
+            /* user avatar */
+            let avatarIcon = document.querySelector("#header__user__avatar")
+            let avatarTabs = document.querySelector("#header__user__avatar__tabs")
 
+            avatarIcon.addEventListener('click', (e) => {
+                console.log("아바타 아이콘 클릭")
+                e.stopPropagation();
+                avatarTabs.classList.toggle("show-avatarTabs")
+                if (avatarTabs.classList.contains('show-avatarTabs')) {
+                    avatarTabs.classList.remove('hide-avatarTabs')
+                    block(avatarTabs)
+                }
+                else {
+                    avatarTabs.classList.add("hide-avatarTabs")
+                    hide(avatarTabs)
+                }
+            });
+            avatarTabs.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+            document.querySelector('body, html').addEventListener('click', (e) => {
+                avatarTabs.classList.remove('show-avatarTabs')
+                avatarTabs.classList.add("hide-avatarTabs")
+                hide(avatarTabs)
+            });
+        </script>
+        {% endif %}
+    </div>
 </div>

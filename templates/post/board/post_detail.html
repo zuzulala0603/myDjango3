@@ -73,8 +73,12 @@
                     'csrfmiddlewaretoken': '{{csrf_token}}',
                 },
                 success: function (response) {
-                    console.log("아작스 성공")
-                    console.log(response)
+                    $('#comment_list').append(
+                        '<div><div id=' + response.data.comment_id + '><strong>' + response.data.writer + '&nbsp;<span>' + '</span></strong>' +
+                        '<span style="float:right;">' + response.data.pub_date + '</span>' +
+                        '<div><div style="white-space:pre-wrap; text-align:left;">' + response.data.content +
+                        '</div><div style="text-align:right;"><a onclick="commentDelete(' + response.data.comment_id + ');">댓글삭제</a></div></div><hr></div><div class=' + response.data.comment_id + '></div>'
+                    );
                 },
                 error: function () {
                     console.log("아작스 에러")

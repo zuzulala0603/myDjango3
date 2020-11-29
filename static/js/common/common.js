@@ -34,7 +34,7 @@ function shuffle(a) {
     return a;
 }
 
-let generateRandom = function (min, max) {
+const generateRandom = function (min, max) {
     let ranNum = Math.floor(Math.random() * (max - min + 1)) + min;
     return ranNum;
 };

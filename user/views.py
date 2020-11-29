@@ -34,29 +34,6 @@ class RegisterView(View):
         
 
 
-class RegisterFormView(View):
-
-    def post(self, request):
-        try:
-            data = request.POST
-            
-            user = User.objects.create_user(
-                        user_id=data.get('user_id', None),
-                        password=data.get('user_pw', None),
-                    )
-            
-            auth.login(request, user)
-            return JsonResponse({'msg': "success"}, status=200)
-            
-        except KeyError:
-            return JsonResponse({'msg': "INVALID_KEYS"}, status=400)
-
-
-    def get(self, request):
-
-        return render(request, 'user/register-form.html', {})
-
-
 def doubleCheck(request):
         try:
             data = request.POST

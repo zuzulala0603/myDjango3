@@ -39,15 +39,39 @@ $(document).ready(() => {
             current[0].classList.remove("sidebar__side__item__active")
             current[1].classList.remove("sidebar__side__item__active")
             if (e.target.classList.contains('sidebar__side__item')) {
+                console.log("박스 클릭")
                 e.target.classList.add("sidebar__side__item__active")
                 e.target.childNodes[1].classList.add("sidebar__side__item__active");
             }
             else {
+                console.log("아이콘 클릭")
                 e.target.classList.add("sidebar__side__item__active")
                 e.target.parentNode.classList.add("sidebar__side__item__active");
             }
+            console.log(e.target.getAttribute('data-side'))
+            let targetContent = e.target.getAttribute('data-side')
+            let targetSideBody = document.querySelector(`div[data-side-body=${targetContent}]`)
+            document.querySelectorAll(".sidebar__body__item").forEach(element => {
+                hide(element)
+            })
+            flex(targetSideBody)
         })
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 )
