@@ -1,4 +1,4 @@
-console.log("인파이트")
+
 
 const fetchPage = async (url) => {
   let headers = new Headers()
@@ -35,7 +35,6 @@ const attachInfiniteScroll = (sentinel, scrollElement, baseUrl) => {
     let bottomEntry = entries[0];
 
     if (!end && bottomEntry.intersectionRatio > 0) {
-      console.log("스크롤 이벤트!")
       await appendElements(scrollElement, counter, baseUrl);
       counter += 1;
     }

@@ -16,3 +16,18 @@ class Post(models.Model):
         db_table = 'post_table'
         verbose_name = 'post'
         verbose_name_plural = 'posts'
+        
+        
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name='게시글')
+    writer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='댓글 작성자')
+    content = models.TextField(verbose_name='댓글 내용')
+    pub_date = models.DateTimeField(auto_now_add=True, verbose_name='작성 시간')
+    
+    def __str__(self):
+        return self.content    
+    
+    class Meta:
+        db_table = 'comment_table'
+        verbose_name = 'comment'
+        verbose_name_plural = 'comments'

@@ -75,8 +75,7 @@ class LoginView(View):
     
     def post(self, request):
         try:
-            data = request.POST
-            
+            data = request.POST            
             user = auth.authenticate(request, user_id=data.get('user_id', None), password=data.get('user_pw', None))
             
             if user is not None:

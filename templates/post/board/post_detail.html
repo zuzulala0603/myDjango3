@@ -1,0 +1,88 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+
+
+<div class="card">
+
+    <div class="card-header">
+        <strong>{{ post.title }}</strong><span>[공지사항]</span>
+    </div>
+    <div class="card-body">
+
+        <div>
+            <span>작성자 : {{ post.writer }}</span>
+            <span>조회수 : {{ post.hits }}</span>
+        </div>
+
+        <div>
+            {{ post.content }}
+        </div>
+    </div>
+</div>
+
+<div>
+    <button onclick="location.href='/post/board'">목록으로</button>
+</div>
+
+<!--  -->
+
+<div class="card">
+    <div class="card-header">
+        <div class="col-md-12">
+            {% csrf_token %}
+            <div class="form-group row">
+                <textarea class="form-control" id="content_id" rows="3" placeholder="댓글을 입력해주세요."></textarea>
+            </div>
+            <div class="text-right" style="float:right">
+                <button id="comment_write" class="btn btn-sm">댓글달기</button>
+            </div>
+        </div>
+        <hr>
+        <div id="more_comment">
+            {% if comments %}
+            {% for comment in comments %}
+            <div id='{{ comment.id }}'>
+                <span style="float:right">{{ comment.pub_date }}</span>
+                <div>
+                    <div>{{ comment.writer }}</div>
+                    <div style="white-space:pre-wrap; text-align:left;">{{ comment.content }}</div>
+                </div>
+                <hr>
+            </div>
+            <div class='{{ comment.id }}'></div>
+            {% endfor %}
+            {% endif %}
+            <input type="hidden" id="comment_writer" value={{request.user}}>
+            <div id="comment_list"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#comment_write').click(function () {
+            let content = $("#content_id").val();
+            /*           var writer = $("#comment_writer").val(); */
+            $.ajax({
+                type: "POST",
+                url: "{% url 'post:board-comment-write' post.id %}",
+                dataType: "json",
+                data: {
+                    'content': content,
+                    'csrfmiddlewaretoken': '{{csrf_token}}',
+                },
+                success: function (response) {
+                    console.log("아작스 성공")
+                    console.log(response)
+                },
+                error: function () {
+                    console.log("아작스 에러")
+                },
+            })
+        });
+    });
+</script>
+
+
+{% endblock content %}

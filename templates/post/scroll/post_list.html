@@ -5,7 +5,7 @@
 
 {% block extra_scripts %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css" />
-<script src="/static/js/post/infinite.js"></script>
+<script src="/static/js/post/scroll.js"></script>
 {% endblock extra_scripts%}
 
 {% block content %}
@@ -19,7 +19,7 @@
 
 
 
-          <form method="POST" action="{% url 'post:create-post' %}">
+          <form method="POST" action="{% url 'post:create-post-scroll' %}">
             {% csrf_token %}
             <div class="field">
               <div class="control">
@@ -38,7 +38,7 @@
 
           <!-- element where scrolling happens -->
           <div class="posts" id="scroll-element">
-            {% include 'post/_posts.html' with posts=posts %}
+            {% include 'post/scroll/_posts.html' with posts=posts %}
           </div>
 
           <!-- bottom sentinel element -->
@@ -61,7 +61,7 @@
   document.addEventListener("DOMContentLoaded", () => {
     let bottomSentinel = document.querySelector("#bottom-sentinel");
     let scrollElement = document.querySelector("#scroll-element");
-    let baseUrl = "{% url 'post:post-list' %}";
+    let baseUrl = "{% url 'post:post-list-scroll' %}";
     attachInfiniteScroll(bottomSentinel, scrollElement, baseUrl);
   })
 </script>
