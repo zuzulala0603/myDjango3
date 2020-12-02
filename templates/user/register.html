@@ -3,7 +3,6 @@
 
 {% block content %}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="/static/js/common/common.js"></script>
 <link rel="stylesheet" href="/static/css/all.css">
 <link rel="stylesheet" href="/static/css/bootstrap.css">
 <link rel="stylesheet" href="/static/css/user/register.css">
@@ -36,7 +35,7 @@
                 </div>
 
                 <!-- 비밀번호 -->
-                <div style="margin-top: 10px;">
+                <div style="margin-top: 30px;">
                     <label style=" font-weight: 600;">
                         비밀번호</label>
                     <input type="password" class="form-control" id="register__form__input__pw"
@@ -61,6 +60,20 @@
                     </div>
                     <div class="invalid-feedback">
                         <p style=" margin-top: 0.5vh;">비밀번호를 다시 확인해 주세요.</p>
+                    </div>
+                </div>
+
+                <!-- 이메일 -->
+                <div style="margin-top: 30px;">
+                    <label style=" font-weight: 600;">
+                        이메일</label>
+                    <input type="text" class="form-control" id="register__form__input__email"
+                        placeholder="비밀번호 찾기에 사용됩니다." autocomplete="off" required="required" />
+                    <div class="valid-feedback">
+                        <p style=" margin-top: 0.5vh;">좋습니다!</p>
+                    </div>
+                    <div class="invalid-feedback">
+                        <p style=" margin-top: 0.5vh;">올바른 이메일 주소를 입력하세요.</p>
                     </div>
                 </div>
             </form>
@@ -109,6 +122,11 @@
         return reg.test(str)
     }
 
+    function isValidEmail(str) {
+        let reg = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+        return reg.test(str);
+    }
+
     function setValidFeedback(element) {
         element.addClass("is-valid")
         element.removeClass("is-invalid")
@@ -126,6 +144,7 @@
         let register__form__input__id = $("#register__form__input__id")
         let register__form__input__pw = $("#register__form__input__pw")
         let register__form__input__pw__re = $("#register__form__input__pw__re")
+        let register__form__input__email = $("#register__form__input__email")
         let doubleCheck = $("#register__form__input__id__double")
         let submitBtn = $("#register__form__submit")
 
@@ -162,13 +181,24 @@
             }
         })
 
+        register__form__input__email.on("keyup", function () {
+            if (!isValidEmail(register__form__input__email.val())) {
+                setInvalidFeedback(register__form__input__email)
+            }
+            else {
+                register__form__input__email.removeClass("is-invalid")
+                setValidFeedback(register__form__input__email)
+            }
+        })
+
 
 
         $("input").on("keyup", function () {
             let isIdChecked = register__form__input__id.hasClass("is-valid")
             let isPwChecked = register__form__input__pw.hasClass("is-valid")
             let isPwReChecked = register__form__input__pw__re.hasClass("is-valid")
-            if (isIdChecked && isPwChecked && isPwReChecked && doubelChecked && flag__terms) {
+            let isEmailChecked = register__form__input__email.hasClass("is-valid")
+            if (isIdChecked && isPwChecked && isPwReChecked && isEmailChecked && doubelChecked && flag__terms) {
                 submitBtn.prop("disabled", false)
             } else {
                 submitBtn.prop("disabled", true)
@@ -192,12 +222,14 @@
                 document.getElementById("register__form__option__terms__checkbox").style.backgroundColor = "#334ACF"
                 document.getElementById("register__form__option__terms__checkbox").style.border = "none"
                 flag__terms = 1
-
+                console.log("동의 버튼 누름")
 
                 let isIdChecked = register__form__input__id.hasClass("is-valid")
                 let isPwChecked = register__form__input__pw.hasClass("is-valid")
                 let isPwReChecked = register__form__input__pw__re.hasClass("is-valid")
-                if (isIdChecked && isPwChecked && isPwReChecked && doubelChecked && flag__terms) {
+                let isEmailChecked = register__form__input__email.hasClass("is-valid")
+                if (isIdChecked && isPwChecked && isPwReChecked && doubelChecked && isEmailChecked && flag__terms) {
+                    console.log("isEmailChecked", isEmailChecked)
                     submitBtn.prop("disabled", false)
                 } else {
                     submitBtn.prop("disabled", true)
@@ -265,6 +297,7 @@
                 data: {
                     user_id: register__form__input__id.val(),
                     user_pw: register__form__input__pw.val(),
+                    email: register__form__input__email.val(),
                     'csrfmiddlewaretoken': '{{ csrf_token }}'
                 },
                 url: "{% url 'user:register' %}",

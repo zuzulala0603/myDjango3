@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'user.apps.UserConfig',
     'contact.apps.ContactConfig',
     'post.apps.PostConfig',
+    'friendship.apps.FriendshipConfig',
 ]
 
 MIDDLEWARE = [
@@ -144,7 +145,8 @@ STATIC_ROOT = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 
-MEDIA_URL = '/media/' # 업로드 할 경로
+
+MEDIA_URL = '/media/' 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 

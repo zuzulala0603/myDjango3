@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'IBMPlexSansKR-Regular';
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cafe24Ohsquare';
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* color */
+/* background-color */
+/* font */
+/* font-size */
+/* font-weight */
+/* border-radius */
+/* box-shadow */
+/* responsive  */
+/*  */
+#delete {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: auto;
+  margin-top: 10vh;
+  width: 98vw;
+  max-width: 600px;
+  background-color: #F8FAFD;
+  border-radius: 1rem;
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+#delete__form {
+  margin: 0 auto;
+  width: 80%;
+  padding: 5% 0 10% 0;
+  /*     background-color: #3A589B;    */
+}
+
+#delete__form__title {
+  font-weight: 900;
+  margin-bottom: 1vh;
+  font-size: 30px;
+  color: #334ACF;
+}
+
+#delete__form__submit {
+  margin-top: 50px;
+}

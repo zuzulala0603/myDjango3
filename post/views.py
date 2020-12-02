@@ -7,10 +7,12 @@ from django.core.paginator import Paginator
 from django.http import JsonResponse, HttpResponse
 from django.http import Http404
 from .models import Post, Comment
-from user.decorators import *
 from user.models import User
 from django.core import serializers
 import json
+
+from user.decorators import *
+from django.utils.decorators import method_decorator
 
 
 def is_ajax(request):
@@ -99,9 +101,8 @@ class Board_Detail_View(View):
     
 
 ## COMMENT
-
+@method_decorator(login_message_required, name='dispatch')
 class Comment_View(View):
-    
     def post(self, request, pk):
         post = get_object_or_404(Post, id = pk)
         content = request.POST.get('content')

@@ -1,0 +1,106 @@
+{% extends 'common/base.html' %}
+
+
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<link rel="stylesheet" href="/static/css/all.css">
+<link rel="stylesheet" href="/static/css/bootstrap.css">
+<link rel="stylesheet" href="/static/css/user/delete.css">
+
+<div id="delete">
+    <div id="delete__form">
+        <div id="delete__form__title">회원 탈퇴</div>
+        <div id="delete__form__input">
+
+            <div style="margin-top: 20px;">
+                <label style=" font-weight: 600;">현재 비밀번호</label>
+            </div>
+            <div class="input-group">
+                <input id="delete__form__input__pw" type="password" class="form-control" placeholder="현재 비밀번호를 입력하세요."
+                    autocomplete="off" />
+            </div>
+
+
+        </div>
+
+
+        <button type="button" class="btn btn-primary btn-lg btn-block" id="delete__form__submit">
+            탈퇴하기
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+
+<script>
+
+
+    let delete__form__input__pw = $("#delete__form__input__pw")
+
+
+    let submitBtn = $("#delete__form__submit")
+
+    delete__form__input__pw.val("")
+    delete__form__input__pw.focus()
+
+    document.querySelector("html").addEventListener("keyup", (e) => {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            submitBtn.click()
+        }
+    })
+
+
+
+    submitBtn.on("click", function () {
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            data: {
+                pw: delete__form__input__pw.val(),
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            url: "{% url 'user:delete' %}",
+            success: function (response) {
+                if (response.msg == "success") {
+                    Swal.fire({
+                        icon: "success",
+                        title: "회원 탈퇴가 완료되었습니다.<br>그동안 함께해 주셔서 감사합니다.",
+                    }).then(function () {
+                        location.href = "/"
+                    })
+                }
+                else if (response.msg == "pw-error") {
+                    Swal.fire("이런...", "비밀번호를 다시 확인해주세요.", "error")
+                    console.log(response)
+                }
+                else {
+                    Swal.fire("이런...", "예상치 못한 오류가 발생했습니다", "error")
+                    console.log(response)
+                }
+            },
+            error: function () {
+                Swal.fire("이런...", "예상치 못한 오류가 발생했습니다!", "error")
+            }
+        })
+    })
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+{% endblock %}
