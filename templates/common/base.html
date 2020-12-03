@@ -33,6 +33,7 @@
 
     {% if user.is_authenticated %}
 
+    {{user.user_id}}
     <button onclick="window.location.href='/logout'"> 로그아웃</button>
 
     {% endif %}

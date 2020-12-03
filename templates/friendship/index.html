@@ -1,0 +1,249 @@
+{% extends 'common/base.html' %}
+
+
+{% block content %}
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+친구 추가 페이지
+<select id="user__list">
+    {% for user in data.users %}
+
+    <option value="{{user}}">{{user}}</option>
+
+    {% endfor %}
+</select>
+{{data.user_list}}
+
+<button id="friendship__add__btn">친구 추가</button>
+
+
+<br>
+나에게 온 요청 :
+{% for request in data.friendship_request_from %}
+<br>
+{{request.from_user}}
+<button data-friend-accept-id="{{request.from_user}}" class="friend__accept__btn">승인</button>
+<button data-friend-reject-id="{{request.from_user}}" class="friend__reject__btn">거절</button>
+<br>
+{% endfor %}
+<br>
+내가 보낸 요청 :
+{% for request in data.friendship_request_to %}
+<br>
+{{request.to_user}}
+<button data-friend-cancel-id="{{request.to_user}}" class="friend__cancel__btn">취소</button>
+<br>
+{% endfor %}
+
+
+<br>
+<br>
+나의 친구 :
+{% for friend in data.friend_list %}
+<br>
+{{friend.from_user}}
+<button data-friend-remove-id="{{friend.from_user}}" class="friend__remove__btn">친구 삭제</button>
+<br>
+{% endfor %}
+
+<script>
+
+    let user__list = document.querySelector("#user__list")
+    let friendship__add__btn = document.querySelector("#friendship__add__btn")
+    let friend__cancel__btn = document.querySelectorAll(".friend__cancel__btn")
+    let friend__accept__btn = document.querySelectorAll(".friend__accept__btn")
+    let friend__reject__btn = document.querySelectorAll(".friend__reject__btn")
+    let friend__remove__btn = document.querySelectorAll(".friend__remove__btn")
+
+    friendship__add__btn.addEventListener("click", () => {
+
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            data: {
+                to_user: user__list.options[user__list.selectedIndex].value,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            url: "{% url 'friendship:friend-add' %}",
+            success: function (response) {
+                if (response.msg == "success") {
+                    Swal.fire({
+                        position: "top",
+                        icon: "success",
+                        title: "친구 요청을 보냈습니다.",
+                        showConfirmButton: false,
+                        timer: 2500,
+                    })
+                } else {
+                    Swal.fire("이런...", "오류 발생", "error")
+                    console.log(response)
+                }
+            },
+            error: function () {
+                Swal.fire("이런...", "예상치 못한 오류가 발생했습니다!", "error")
+            }
+        })
+
+    })
+
+
+    friend__cancel__btn.forEach(ele => {
+        ele.addEventListener("click", () => {
+
+            console.log(ele.getAttribute("data-friend-cancel-id"))
+
+            let to_user = ele.getAttribute("data-friend-cancel-id")
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                data: {
+                    to_user: to_user,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                url: "{% url 'friendship:friend-cancel' %}",
+                success: function (response) {
+                    if (response.msg == "success") {
+                        Swal.fire({
+                            position: "top",
+                            icon: "success",
+                            title: "요청이 취소되었습니다.",
+                            showConfirmButton: false,
+                            timer: 2500,
+                        })
+                    } else {
+                        Swal.fire("이런...", "오류 발생", "error")
+                        console.log(response)
+                    }
+                },
+                error: function () {
+                    Swal.fire("이런...", "예상치 못한 오류가 발생했습니다!", "error")
+                }
+            })
+        })
+    })
+
+
+    friend__accept__btn.forEach(ele => {
+        ele.addEventListener("click", () => {
+
+            console.log(ele.getAttribute("data-friend-accept-id"))
+
+            let from_user = ele.getAttribute("data-friend-accept-id")
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                data: {
+                    from_user: from_user,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                url: "{% url 'friendship:friend-accept' %}",
+                success: function (response) {
+                    if (response.msg == "success") {
+                        Swal.fire({
+                            position: "top",
+                            icon: "success",
+                            title: "친구 추가가 완료되었습니다.",
+                            showConfirmButton: false,
+                            timer: 2500,
+                        })
+                    } else {
+                        Swal.fire("이런...", "오류 발생", "error")
+                        console.log(response)
+                    }
+                },
+                error: function () {
+                    Swal.fire("이런...", "예상치 못한 오류가 발생했습니다!", "error")
+                }
+            })
+        })
+    })
+
+    friend__reject__btn.forEach(ele => {
+        ele.addEventListener("click", () => {
+
+            console.log(ele.getAttribute("data-friend-reject-id"))
+
+            let from_user = ele.getAttribute("data-friend-reject-id")
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                data: {
+                    from_user: from_user,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                url: "{% url 'friendship:friend-reject' %}",
+                success: function (response) {
+                    if (response.msg == "success") {
+                        Swal.fire({
+                            position: "top",
+                            icon: "success",
+                            title: "친구 요청을 거절하였습니다.",
+                            showConfirmButton: false,
+                            timer: 2500,
+                        })
+                    } else {
+                        Swal.fire("이런...", "오류 발생", "error")
+                        console.log(response)
+                    }
+                },
+                error: function () {
+                    Swal.fire("이런...", "예상치 못한 오류가 발생했습니다!", "error")
+                }
+            })
+        })
+    })
+
+    friend__remove__btn.forEach(ele => {
+        ele.addEventListener("click", () => {
+
+            console.log(ele.getAttribute("data-friend-remove-id"))
+
+            let from_user = ele.getAttribute("data-friend-remove-id")
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                data: {
+                    from_user: from_user,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                url: "{% url 'friendship:friend-remove' %}",
+                success: function (response) {
+                    if (response.msg == "success") {
+                        Swal.fire({
+                            position: "top",
+                            icon: "success",
+                            title: "친구를 삭제하였습니다.",
+                            showConfirmButton: false,
+                            timer: 2500,
+                        })
+                    } else {
+                        Swal.fire("이런...", "오류 발생", "error")
+                        console.log(response)
+                    }
+                },
+                error: function () {
+                    Swal.fire("이런...", "예상치 못한 오류가 발생했습니다!", "error")
+                }
+            })
+        })
+    })
+
+
+
+
+
+
+
+
+
+</script>
+
+
+{% endblock content %}

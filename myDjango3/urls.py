@@ -9,4 +9,5 @@ urlpatterns = [
     path('', include('user.urls')),
     path('', include('contact.urls')),
     path('', include('post.urls')),
+    path('', include('friendship.urls')),
 ]

@@ -34,7 +34,7 @@ class RegisterView(View):
         return render(request, 'user/register.html', {})
         
 
-
+ 
 def doubleCheck(request):
         try:
             data = request.POST
